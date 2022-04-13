@@ -7,7 +7,9 @@ const User = require('../modals/User')
 router.post("/login", (req, res) => {
   const username = "rafeeq";
   const password = "123";
+  console.log(1111111111111111);
   if (username === req.body.username && password == req.body.password) {
+    console.log('success');
     res.status(200).json("login success");
   } else {
     res.status(400).json("incorrect password or username");
