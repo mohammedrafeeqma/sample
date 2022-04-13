@@ -14,7 +14,7 @@ const conversationRoute = require('./routes/conversation')
 const messageRoute = require('./routes/message')
 const eventRoute = require('./routes/events')
 const notificationRoute = require('./routes/notification')
-console.log(__dirname);
+const cors = require('cors')
 
 dotenv.config()
  
@@ -30,6 +30,8 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json()) // it is a body parser when you make post request it parse
 app.use(helmet())
 app.use(morgan('common'))
+app.use(cors())
+
 
 app.use('/api/user' , userRoute)
 app.use('/api/auth', authRoute)
@@ -46,6 +48,8 @@ app.use(express.static(path.join(__dirname,'../../', '/client/deploy')))
   app.get('*', (req, res) =>
     res.sendFile(path.resolve(__dirname,'../../', 'client', 'deploy', 'index.html'))
   )
+
+
 
 
 // catch 404 and forward to error handler
